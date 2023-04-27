@@ -1,0 +1,22 @@
+#!/bin/bash
+   
+#PBS -q express
+#PBS -P er4
+#PBS -N extremes_flood
+#PBS -l walltime=02:00:00
+#PBS -l ncpus=48
+#PBS -l mem=128gb
+#PBS -o /g/data/er4/zk6340/code/Script_Hydro-projections/PBS_jobs/extremes_flood.out
+#PBS -e /g/data/er4/zk6340/code/Script_Hydro-projections/PBS_jobs/extremes_flood.error
+#PBS -m e
+#PBS -l storage=gdata/wj02+gdata/er4
+#PBS -M zaved.khan@bom.gov.au
+
+# Source AWRA v6 (updated non-stripy parameters)
+source /g/data/er4/AWRACMS/gadi_activate_awra_v6.1_lisa
+
+# Path to the file
+path=/g/data/er4/zk6340/code/Script_Hydro-projections
+
+# Run simulation
+nohup python $path/002_plot_clim_extremes_flood.py

@@ -1,0 +1,23 @@
+#!/bin/bash
+   
+#PBS -q express
+#PBS -P er4
+#PBS -N flood_indicator
+#PBS -l walltime=12:00:00
+#PBS -l ncpus=48
+#PBS -l mem=190gb
+#PBS -o /g/data/er4/zk6340/code/Script_Hydro-projections/PBS_jobs/NWGA.out
+#PBS -e /g/data/er4/zk6340/code/Script_Hydro-projections/PBS_jobs/NWGA.error
+#PBS -m e
+#PBS -l storage=gdata/wj02+gdata/er4
+#PBS -M zaved.khan@bom.gov.au
+
+# Source AWRA v6 (updated non-stripy parameters)
+source /g/data/er4/AWRACMS/gadi_activate_awra_v6.1_lisa
+
+# Run simulation
+path=/g/data/er4/zk6340/code/Script_Hydro-projections
+var_name=var
+
+# Run simulation
+nohup python $path/006a_calculate_flood_index_NWGA.py ${var_name} 1>$path/PBS_jobs/NWGA_"$var_name".log 2>$path/PBS_jobs/NWGA_"$var_name".err 

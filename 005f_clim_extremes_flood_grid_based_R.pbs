@@ -1,0 +1,22 @@
+#!/bin/bash
+   
+#PBS -q normal
+#PBS -P er4
+#PBS -N R_f_flood_plt
+#PBS -l walltime=24:00:00
+#PBS -l ncpus=48
+#PBS -l mem=190gb
+#PBS -o /g/data/er4/zk6340/code/PBS_jobs/HP_flood_plt_R_f.out
+#PBS -e /g/data/er4/zk6340/code/PBS_jobs/HP_flood_plt_R_f.error
+#PBS -m e
+#PBS -l storage=gdata/er4
+#PBS -M zaved.khan@bom.gov.au
+
+# Source AWRA v6 (updated non-stripy parameters)
+source /g/data/er4/miniconda3/bin/activate /g/data/er4/zk6340/conda/envs/py36-khan
+
+# Run simulation
+path=/g/data/er4/zk6340/code/Script_Hydro-projections
+
+# Run simulation
+nohup python $path/005f_clim_extremes_flood_grid_based_R.py 1>$path/PBS_jobs/005f_clim_extremes_flood_grid_based_R_f.log 2>$path/PBS_jobs/005f_clim_extremes_flood_grid_based_R_f.err
